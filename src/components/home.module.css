@@ -1,0 +1,228 @@
+.homeContainer {
+  /* Reset or specify styles that might conflict with global styles */
+  background-color: var(--orange-50); /* Example variable for orange theme */
+  /* Other styles */
+}
+
+
+
+/* Background */
+.bgOrange50 {
+    background-color: #FFF3E0; /* Light orange background */
+  }
+
+  .borderOrange200 {
+    border-color: #FFCC80; /* Light orange border */
+  }
+
+  .textOrange500 {
+    color: #FF9800; /* Orange text */
+  }
+
+  .textOrange700 {
+    color: #F57C00; /* Darker orange text */
+  }
+
+  .hoverTextOrange900:hover {
+    color: #E65100; /* Dark orange on hover */
+  }
+  
+  /* Additional orange theme utilities */
+  .bgOrange900_40 {
+    background-color: rgba(230, 81, 0, 0.4); /* Dark orange background with opacity */
+  }
+  
+  
+  .darkBgGray950 {
+    background-color: #1a202c;
+  }
+  
+  /* Borders */
+  .borderB{
+    border-bottom: 1px solid #e2e8f0;
+  }
+  .borderT {
+    border-bottom: 1px solid #e2e8f0; /* Adjusted for border-top as well */
+  }
+  
+  .borderGray200 {
+    border-color: #edf2f7;
+  }
+  
+  .darkBorderGray800 {
+    border-color: #2d3748;
+  }
+  
+  /* Container */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 16px;
+  }
+  
+  .px4{
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .mdPx6 {
+    padding-left: 16px; /* px4 */
+    padding-right: 16px; /* px4 */
+  }
+  
+  @media (min-width: 768px) {
+    .mdPx6 {
+      padding-left: 24px; /* mdPx6 */
+      padding-right: 24px; /* mdPx6 */
+    }
+  }
+  
+  /* Flexbox */
+  .flex{
+    display: flex;
+  align-items: center; /* Vertically centers the items in the container */
+  justify-content: space-between; /* Distributes space between items */
+  }
+  .mdFlexRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Unified for .justifyBetween */
+  }
+  
+  .itemsCenter {
+    align-items: center;
+  }
+  
+  .spaceX2 > * + * {
+    margin-left: 8px;
+  }
+  .spaceX4 > * + * {
+    margin-left: 16px; /* spaceX2 */
+  }
+  
+  .spaceX4 > * + * {
+    margin-left: 16px; /* spaceX4 */
+  }
+  
+  /* Typography */
+  .fontBold {
+    font-weight: bold;
+  }
+  
+  .text3xl,
+  .text2xl,
+  .text4xl,
+  .textSm,
+  .mdTextXl {
+    font-size: 1.875rem; /* text3xl */
+    line-height: 2.25rem; /* text3xl */
+  }
+  
+  .text2xl {
+    font-size: 1.5rem; /* text2xl */
+    line-height: 2rem; /* text2xl */
+  }
+  
+  .text4xl {
+    font-size: 2.25rem; /* text4xl */
+    line-height: 2.5rem; /* text4xl */
+  }
+  
+  .textSm {
+    font-size: 0.875rem; /* textSm */
+  }
+  
+  .mdTextXl {
+    font-size: 1.25rem; /* mdTextXl */
+  }
+  
+  .textGray500,
+  .link {
+    color: #a0aec0;
+  }
+  
+  .darkTextGray400,
+  .darkHoverTextGray50:hover {
+    color: #cbd5e0;
+  }
+  
+  .hoverTextGray900:hover,
+  .link:hover {
+    color: #1a202c;
+  }
+  
+  /* Images */
+  .roundedFull,
+  .image {
+    border-radius: 9999px;
+  }
+  
+  .objectCover {
+    object-fit: cover;
+  }
+  
+  .wFull {
+    width: 100%;
+  }
+  
+  .h96 {
+    height: 24rem; /* 384px */
+  }
+  
+  .lgHAuto {
+    height: auto;
+  }
+  
+  /* Positioning */
+  .relative,
+  .absolute {
+    position: relative; /* adjusted for .absolute as well */
+  }
+  
+  .absolute {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+  
+  /* Grid */
+  .grid,
+  .lgGridCols2 {
+    display: grid;
+    gap: 16px; /* gap4 */
+  }
+  
+  .lgGridCols2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  
+  /* Additional utilities */
+  .bgGray900_40,
+  .darkBgGray50_40 {
+    background-color: rgba(31, 41, 55, 0.4); /* bgGray900_40 */
+  }
+  
+  .darkBgGray50_40 {
+    background-color: rgba(249, 250, 251, 0.4); /* darkBgGray50_40 */
+  }
+  
+  /* Aspect ratio and responsiveness */
+  .aspectRatio600x400 {
+    aspect-ratio: 600 / 400;
+  }
+  
+  @media (min-width: 640px) {
+    .smH400 {
+      height: 400px;
+    }
+  
+    .smText5xl,
+    .smText4xl {
+      font-size: 3rem; /* smText5xl */
+    }
+  
+    .smText4xl {
+      font-size: 2.25rem; /* smText4xl */
+    }
+  }
+  

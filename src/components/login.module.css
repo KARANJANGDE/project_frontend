@@ -1,0 +1,99 @@
+/* login.module.css */
+.loginContent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(to right, #ff7e5f, #feb47b);
+  }
+  
+  .loginContainer {
+    padding: 20px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .loginCard {
+    background-color: white;
+    padding: 71px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid orange;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .loginCard:hover {
+    transform: scale(1.05);
+  }
+  
+  .cardHeader h3 {
+    
+    color: orange; /* Starting color */
+    font-family: 'Arial', sans-serif; /* Change as per your preference */
+    font-size: 24px; /* Adjust size as needed */
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: bold; /* Make it bold */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+  
+  }
+  
+  .formGroup label {
+    color: #333;
+  }
+  
+  .formControl {
+    margin-bottom: 15px;
+    height: 50px;
+    font-size: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    transition: border-color 0.3s;
+    text-indent: 19px;
+  }
+  
+  .formControl:focus {
+    border-color: orange;
+    box-shadow: none;
+  }
+  .formControl::placeholder {
+    font-size: 13px; /* Smaller font size for placeholder text */
+    color: #999; /* Optional: Adjust the color to ensure the placeholder is distinguishable */
+  }
+  
+  .loginBtn {
+    background-color: orange;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 15px;
+    cursor: pointer;
+    display: block;
+    width: 50%; /* Or any specific width you prefer */
+    margin: 20px auto;
+    transition: background-color 0.3s;
+    margin-bottom: 20px;
+  }
+  
+  .loginBtn:hover {
+    background-color: #e67e22;
+  }
+  
+  .signUpMessage {
+    text-align: center;
+  margin-top: 30px; /* Adjust space above the message as needed */
+  font-size: 16px; /* Adjust font size as needed */
+  color: #666; 
+  }
+  
+  .signUpLink {
+    color: orange; /* Color of the link to match your form’s theme */
+    text-decoration: none; /* Optional: Removes underline from the link */
+    font-weight: bold; /* Makes the link text bold */
+  }
+  
+  .signUpLink:hover {
+    text-decoration: underline; /* Adds underline on hover for better UX */
+    cursor: pointer;
+}
