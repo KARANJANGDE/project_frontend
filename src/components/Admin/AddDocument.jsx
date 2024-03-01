@@ -16,6 +16,8 @@ const AddDocument = () => {
 
     const navigate=useNavigate();
     const [types, settypes] = useState([]);
+    // const [documents, setDocuments] = useState([]);
+    // const [showForm, setShowForm] = useState(false);
     //const [selectedfile, setselectedfile] = useState()
     //const projectid=useParams().id;
   
