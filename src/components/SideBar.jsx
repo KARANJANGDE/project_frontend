@@ -89,7 +89,7 @@ const SideBar = () => {
             return(
                 <li className="nav-item active">
                     <Link className="nav-link" to={user.link}>
-                        <i className="nc-icon nc-atom" />
+                        <i className={user.icon} />
                         <p>{user.name}</p>
                     </Link>
                 </li>
