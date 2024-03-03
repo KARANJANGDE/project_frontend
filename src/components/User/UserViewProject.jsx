@@ -84,7 +84,7 @@ const UserViewProject = () => {
                           </h4>
                           <Link
                             type="button"
-                            to="/admin/admindashboard"
+                            to="/user/userdashboard"
                             rel="tooltip"
                             className="btn btn-danger btn-simple btn-link"
                             data-original-title="Remove"
