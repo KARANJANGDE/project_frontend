@@ -22,6 +22,8 @@ import Home from './components/Home';
 import AddEquipment from './components/Admin/AddEquipment';
 import UpdateUserProfile from './components/Admin/UpdateUserProfile';
 import ViewDocument from './components/Admin/ViewDocument';
+import Communication from './components/Admin/Communication';
+import UserProfile from './components/User/UserProfile';
 
 function App() {
 
@@ -82,6 +84,7 @@ function App() {
                     
                     <Route path='/user/userdashboard' element={<UserDashBoard/>}></Route>
                     <Route path='user/userviewproject' element={<UserViewProject/>}></Route>
+                    <Route path='user/userprofile' element={<UserProfile/>}></Route>
                     <Route path="/admin/admindashboard" element={<AdminDashBoard/>}></Route>
                     <Route path="/admin/addproject" element={<AddProject/>}></Route>
                     <Route path="/admin/adminprofile" element={<AdminProfile/>}></Route>
@@ -95,6 +98,7 @@ function App() {
                     <Route path="/admin/getequipment/updateequipment/:id" element={<UpdateEquipment/>}></Route>
                     <Route path="/admin/getequipment/addequipment/:id" element={<AddEquipment/>}></Route>
                     <Route path="/admin/updateuserprofile/:id" element={<UpdateUserProfile/>}></Route>
+                    <Route path="/admin/communication" element={<Communication/>}></Route>
                   </Routes>
                 </CSSTransition>
               </TransitionGroup>

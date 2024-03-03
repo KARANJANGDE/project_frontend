@@ -36,13 +36,24 @@ const SideBar = () => {
           name:"View Project",
           link:"admin/adminviewproject",
           icon:"nc-icon nc-chart-bar-32"
+        },
+        {
+          name:"Communication",
+          link:"admin/communication",
+          icon:"nc-icon nc-bulb-63"
         }
         
     ]
     const userlinks=[
         {
             name:'ViewProject',
-            link:'user/userviewproject'
+            link:'user/userviewproject',
+            icon:'nc-icon nc-chart-bar-32'
+        },
+        { 
+          name:'User Profile',
+          link:'/user/userprofile',
+          icon:'nc-icon nc-circle-09'
         }
     ]
 
