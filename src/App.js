@@ -24,6 +24,7 @@ import UpdateUserProfile from './components/Admin/UpdateUserProfile';
 import ViewDocument from './components/Admin/ViewDocument';
 import Communication from './components/Admin/Communication';
 import UserProfile from './components/User/UserProfile';
+import UserEquipment from './components/User/UserEquipment';
 
 function App() {
 
@@ -85,6 +86,7 @@ function App() {
                     <Route path='/user/userdashboard' element={<UserDashBoard/>}></Route>
                     <Route path='user/userviewproject' element={<UserViewProject/>}></Route>
                     <Route path='user/userprofile' element={<UserProfile/>}></Route>
+                    <Route path='user/equipment/:id' element={<UserEquipment/>}></Route>
                     <Route path="/admin/admindashboard" element={<AdminDashBoard/>}></Route>
                     <Route path="/admin/addproject" element={<AddProject/>}></Route>
                     <Route path="/admin/adminprofile" element={<AdminProfile/>}></Route>

@@ -38,8 +38,8 @@ const UserProfile = () => {
     }
   }, []);
   return (
-    <div className="col-md-12">
-        <div className="card card-user">
+    <div className="col-md-12" style={{ maxWidth: "75%", padding: "20px" }}>
+        <div className="card card-user"style={{ margin: "20px"}}>
           <div className="card-header no-padding">
             <div className="card-image">
               <img src="../assets/img/full-screen-image-3.jpg" alt="..." />

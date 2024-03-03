@@ -153,31 +153,28 @@ const UserViewProject = () => {
                           <div className="row">
                             <div className="col-md-12">
                               <div className="form-group">
-                                <label style={{ fontWeight: '728' }}>Status</label>
-                                {/* <input
-                          type="text"
-                          {...register("status")}
-                          className="form-control"
-                          placeholder="Project Status"
-                        /> */}
-                                <select
-                                  {...register("status")}
-                                  className="form-control"
-                                  placeholder="Project Status"
-                                >
-                                  <option value="">Select Status</option>
-                                  <option value="true">True</option>
-                                  <option value="False">False</option>
-                                </select>
+                                <label style={{ fontWeight: '728' }}>Equipment</label>
+                                
+                                <Link
+                            type="button"
+                            to="/user/equipment/65d9b080eec8efe599d75ee3"
+                            rel="tooltip"
+                            className="btn btn-primary"
+                            data-original-title="Remove"
+                            style={{
+                              display: "flex",
+                              alignItems: "right",
+                              fontSize: "16px",
+                              position: "relative",
+                              left: "0%",
+                              top: "4px",
+                            }}
+                          >
+                            EQUIPMENT
+                          </Link>
                               </div>
                             </div>
                           </div>
-                          <button
-                            type="submit"
-                            className="btn btn-info btn-fill pull-right"
-                          >
-                            Submit
-                          </button>
                         </div>
                       </div>
                     </div>
