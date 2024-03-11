@@ -72,7 +72,7 @@ const UserViewProject = () => {
                           className="card-header"
                           style={{ textAlign: "center" }}
                         >
-                          <h4
+                          <h3
                             className="card-title"
                             style={{
                               fontFamily: "Arial, sans-serif",
@@ -81,7 +81,7 @@ const UserViewProject = () => {
                             }}
                           >
                             Your Project
-                          </h4>
+                          </h3>
                           <Link
                             type="button"
                             to="/user/userdashboard"
@@ -153,7 +153,7 @@ const UserViewProject = () => {
                           <div className="row">
                             <div className="col-md-12">
                               <div className="form-group">
-                                <label style={{ fontWeight: '728' }}>Equipment</label>
+                                {/* <label style={{ fontWeight: '728' }}>Equipment</label> */}
                                 
                                 <Link
                             type="button"
@@ -170,7 +170,7 @@ const UserViewProject = () => {
                               top: "4px",
                             }}
                           >
-                            EQUIPMENT
+                            Description
                           </Link>
                               </div>
                             </div>

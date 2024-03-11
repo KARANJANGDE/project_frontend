@@ -25,6 +25,9 @@ import ViewDocument from './components/Admin/ViewDocument';
 import Communication from './components/Admin/Communication';
 import UserProfile from './components/User/UserProfile';
 import UserEquipment from './components/User/UserEquipment';
+import Practice from './components/User/Practice';
+import ProjectStatus from './components/Admin/ProjectStatus';
+import ViewUserProfile from './components/Admin/ViewUserProfile';
 
 function App() {
 
@@ -86,6 +89,7 @@ function App() {
                     <Route path='/user/userdashboard' element={<UserDashBoard/>}></Route>
                     <Route path='user/userviewproject' element={<UserViewProject/>}></Route>
                     <Route path='user/userprofile' element={<UserProfile/>}></Route>
+                    <Route path='user/practice' element={<Practice/>}></Route>
                     <Route path='user/equipment/:id' element={<UserEquipment/>}></Route>
                     <Route path="/admin/admindashboard" element={<AdminDashBoard/>}></Route>
                     <Route path="/admin/addproject" element={<AddProject/>}></Route>
@@ -101,6 +105,8 @@ function App() {
                     <Route path="/admin/getequipment/addequipment/:id" element={<AddEquipment/>}></Route>
                     <Route path="/admin/updateuserprofile/:id" element={<UpdateUserProfile/>}></Route>
                     <Route path="/admin/communication" element={<Communication/>}></Route>
+                    <Route path='/admin/projectstatus/:id' element={<ProjectStatus/>}></Route>
+                    <Route path='/admin/viewuserprofile/:id' element={<ViewUserProfile/>}></Route>
                   </Routes>
                 </CSSTransition>
               </TransitionGroup>

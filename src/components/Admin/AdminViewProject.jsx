@@ -70,6 +70,7 @@ const AdminViewProject = () => {
               <th>City</th>
               <th>State</th>
               <th>Action</th>
+              <th>Status</th>
               <th>Deletion</th>
               <th>StartDate</th>
               <th>EndDate</th>
@@ -77,10 +78,10 @@ const AdminViewProject = () => {
           </thead>
           <tbody>
               {
-                project?.map((pro)=>{
+                project?.map((pro,index)=>{
                     return(
                         <tr>
-                            <td>{pro._id}</td>
+                            <td>{index +1}</td>
                             <td>{pro.ProjectName}</td>
                             <td>{pro.City}</td>
                             <td>{pro.State}</td>
@@ -99,6 +100,24 @@ const AdminViewProject = () => {
                       }}
                     >
                       Update
+                    </Link></td>
+                    <td> <Link
+                      to={`/admin/projectstatus/${pro._id}`}
+                      className="btn btn-primary"
+                      style={{
+                        height: "27px",
+                        width:"77px",
+                        lineHeight: "20px",
+                        padding: "0 8px",
+                        fontSize: "10px",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        color: "#4CAF50",
+                        borderColor: "#4CAF50",
+                      }}
+                    >
+                      Status
                     </Link></td>
                     <td> <button
                       className="btn btn-danger"

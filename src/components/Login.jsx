@@ -7,57 +7,46 @@ import axios from "axios";
 
 const Login = () => {
  
-  // const navigate = useNavigate();
-  // const { register, handleSubmit, formState: { errors } } = useForm();
-  // const onSubmit = async data => {
-  //   try {
-  //     const body = {
-  //       UserEmail: data.email,
-  //       UserPass: data.password,
-  //     };
-
-  //     const response = await axios.post('http://localhost:4000/api/user/login', body);
-
-  //     console.log("Response:", response.data);
-      
-  //     localStorage.setItem('token', response.data.data);
-  //     navigate("/user/userdashboard");
-  //   } catch (error) {
-  //     console.log('Error in Login:', error);
-  //     alert('Login failed: ' + error.message);
-  //   }
-  // };
-
+  
   const navigate = useNavigate();
   const { register, handleSubmit, formState: { errors } } = useForm();
   
-  const isAdminLogin = false; // Manually toggle this based on your needs
 
-  const onSubmit = async (data) => {
+
+  const attemptLogin = async (email, password, isSecondAttempt = false) => {
+    const body = isSecondAttempt
+      ? { AdminEmail: email, AdminPass: password }
+      : { UserEmail: email, UserPass: password };
+    const endpoint = isSecondAttempt
+      ? 'http://localhost:4000/api2/admin/login'
+      : 'http://localhost:4000/api/user/login';
+
     try {
-      const body = isAdminLogin
-        ? { AdminEmail: data.email, AdminPass: data.password }
-        : { UserEmail: data.email, UserPass: data.password };
-
-      const endpoint = isAdminLogin
-        ? 'http://localhost:4000/api2/admin/login'
-        : 'http://localhost:4000/api/user/login';
-
       const response = await axios.post(endpoint, body);
-
       console.log("Response:", response.data);
-      
       localStorage.setItem('id', response.data.data.id);
+      localStorage.setItem('role', response.data.data.role);
       
-      if (response.data.role === 'admin') {
-        navigate("/admin/admindashboard");
-      } else {
+      if (response.data.data.role === 'user') {
         navigate("/user/userdashboard");
+      } else if (response.data.data.role === 'admin') {
+        navigate("/admin/admindashboard");
       }
     } catch (error) {
-      console.log('Error in Login:', error);
-      alert('Login failed: ' + error.message);
+      if (!isSecondAttempt) {
+        // If first attempt fails, try the other role
+        console.log('First attempt failed, trying other role...');
+        attemptLogin(email, password, true);
+      } else {
+        // If second attempt also fails, report back to user
+        console.log('Error in Login:', error);
+        alert('Login failed: ' + error.message);
+      }
     }
+  };
+
+  const onSubmit = (data) => {
+    attemptLogin(data.email, data.password);
   };
 
   return (
@@ -105,7 +94,13 @@ const Login = () => {
           <h1 style={{ textAlign: 'center', fontWeight: 'bold', fontSize: '2rem', color: 'black' }}>Login</h1>
 
           <input
-            {...register('email', { required: true })}
+            {...register('email', {
+              required: "Email is required",
+              pattern: {
+                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                message: "Invalid email address",
+              },
+            })}
             placeholder="Enter your email"
             style={{
               padding: '0.75rem',
@@ -116,10 +111,17 @@ const Login = () => {
               outlineColor: '#007BFF',
             }}
           />
-          {errors.email && <span>This field is required</span>}
+          {errors.email && <p style={{ color: "red" }}>{errors.email.message}</p>}
+
 
           <input
-            {...register('password', { required: true })}
+            {...register('password', {
+              required: "Password is required",
+              minLength: {
+                value: 6,
+                message: "Password must have at least 6 characters",
+              },
+            })}
             type="password"
             placeholder="Enter your password"
             style={{
@@ -131,7 +133,7 @@ const Login = () => {
               outlineColor: '#007BFF',
             }}
           />
-          {errors.password && <span>This field is required</span>}
+          {errors.password && <p style={{ color: "red" }}>{errors.password.message}</p>}
 
           <button
             type="submit"
@@ -148,6 +150,9 @@ const Login = () => {
           >
             Submit
           </button>
+          <div style={{ textAlign: 'center', marginTop: '1rem' }}>
+            <Link to="/signup" style={{ textDecoration: 'none', color: 'black', fontWeight: 'bold' }}>Haven't Register yet</Link>
+          </div>
         </form>
 
 

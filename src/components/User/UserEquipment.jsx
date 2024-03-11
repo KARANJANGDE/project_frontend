@@ -4,14 +4,16 @@ import { Link, useParams } from 'react-router-dom'
 
 const UserEquipment = () => {
 
-    const id = useParams().id;
+  //const id=localStorage.getItem('id')
+
+    //const id = useParams().id;
   const [equipment, setEquipment] = useState([]);
 
   useEffect(() => {
     const getEquipmentByID = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:4000/api6/equipment/" + id
+          "http://localhost:4000/api6/equipment/65d9b080eec8efe599d75ee3"
         );
         console.log(res.data.data);
         setEquipment(res.data.data);
@@ -53,6 +55,7 @@ const UserEquipment = () => {
               <table className="table table-hover">
                 <thead>
                   <tr>
+                    <th>Sr.</th>
                     <th>ID</th>
                     <th>ProjectName</th>
                     <th>EquipmentName</th>
@@ -60,10 +63,11 @@ const UserEquipment = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {equipment.map((pro) => (
+                  {equipment.map((pro,index) => (
                     <tr key={pro._id}>
                       {" "}
                       {/* Added key for React list rendering */}
+                      <td>{index +1}</td>
                       <td>{pro._id}</td>
                       <td>{pro.ProjectID.ProjectName}</td>
                       <td>{pro.EquipmentName}</td>

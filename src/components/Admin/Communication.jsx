@@ -70,10 +70,10 @@ const Communication = () => {
           </thead>
           <tbody>
               {
-                com?.map((comu)=>{
+                com?.map((comu,index)=>{
                     return(
                        <tr>
-                        <td>{comu._id}</td>
+                        <td>{index+1}</td>
                         <td>{comu.UserID.FirstName} {comu.UserID.LastName}</td>
                         <td>{comu.Inquiry}</td>
                         <td>{comu.ComDate}</td>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFacebookSquare,
@@ -8,16 +8,15 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import axios from "axios";
 
-const UserProfile = () => {
+const ViewUserProfile = () => {
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setemail] = useState("");
-  const navigate = useNavigate();
+  const userId=useParams().id;
 
   useEffect(() => {
-    // Step 1: Retrieve the user ID from localStorage
-    const userId = localStorage.getItem("id"); // Ensure this key matches what you've used to store the ID
-
+    
     if (userId) {
       // Step 2: Fetch user data
       const fetchUserData = async () => {
@@ -40,14 +39,6 @@ const UserProfile = () => {
     }
   }, []);
 
-  const handleLogout = () => {
-    // Clear the user session from localStorage or wherever it's stored
-    localStorage.removeItem("id");
-    localStorage.removeItem("role");
-
-    // Navigate to login page or home page after logout
-    navigate("/login"); // Adjust the path as needed
-  };
   return (
     <div
       className="col-md-12"
@@ -59,17 +50,17 @@ const UserProfile = () => {
       }}
     >
       <div className="card card-user" style={{ margin: "20px" }}>
-        <div className="card-header no-padding">
+        {/* <div className="card-header no-padding">
           <div className="card-image">
             <img src="../assets/img/full-screen-image-3.jpg" alt="..." />
           </div>
-        </div>
+        </div> */}
         <div className="card-body ">
           <div className="author">
             <label>
               <img
                 className="avatar border-gray"
-                src="../../assets/img/faces/profile3.jpg"
+                src="../../assets/img/faces/face-0.jpg"
                 alt="..."
               />
               <h5 className="card-title">
@@ -98,7 +89,7 @@ const UserProfile = () => {
             </button>
           </div>
           <div style={{ display: "flex", justifyContent: "flex-end" }}>
-              <button className="btn btn-round" to="/"
+              <Link className="btn btn-round" to="/admin/adminprofile"
               
               style={{
                  position: "relative",
@@ -111,15 +102,14 @@ const UserProfile = () => {
                 backgroundColor: "#FF0000",
                 margin: "-18px",
               }}
-              onClick={handleLogout}
               >
-                <span className="no-icon">Log out</span>
-              </button>
+                <span className="no-icon">Back</span>
+              </Link>
           </div>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default UserProfile;
+export default ViewUserProfile

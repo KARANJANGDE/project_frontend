@@ -45,15 +45,20 @@ const SideBar = () => {
         
     ]
     const userlinks=[
+      { 
+        name:'User Profile',
+        link:'/user/userprofile',
+        icon:'nc-icon nc-circle-09'
+      },
         {
             name:'ViewProject',
             link:'user/userviewproject',
             icon:'nc-icon nc-chart-bar-32'
         },
-        { 
-          name:'User Profile',
-          link:'/user/userprofile',
-          icon:'nc-icon nc-circle-09'
+        {
+          name:'Equipment',
+          link:'/user/equipment/65d9b080eec8efe599d75ee3',
+          icon:'nc-icon nc-notes'
         }
     ]
 
