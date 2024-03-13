@@ -26,6 +26,17 @@ const AdminProfile = () => {
     };
   
 
+    const removeuser=async(id)=>{
+      try {
+        const res= await axios.delete(`http://localhost:4000/api/user/`+id);
+        console.log(res.data.data);
+        navigate('/admin/adminprofile')
+        //setuser(res.data.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
   useEffect(() => {
     const adminid=localStorage.getItem('id');
     if(adminid){
@@ -215,6 +226,25 @@ const AdminProfile = () => {
           <div className="card-header ">
             <h4 className="card-title">Users List</h4>
             <p className="card-category">Master Control</p>
+            <Link
+                          className="btn btn-danger"
+                          to={`/admin/createuser`}
+                          style={{
+                            height: "30px",
+                            width: "85px",
+                            lineHeight: "30px",
+                            padding: "14 8px",
+                            fontSize: "11px",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            position: "relative",
+                            bottom: "41px",
+                            left:"85%"
+                          }}
+                        >
+                          Add User
+                        </Link>
           </div>
           <div className="card-body" style={{ minWidth: "700px" }}>
             <table className="table">
@@ -256,15 +286,15 @@ const AdminProfile = () => {
                         >
                           <i className="fa fa-edit" />
                         </Link>
-                        <a
-                          href="#"
+                        <button
+                        onClick={()=>{removeuser(m._id)}}
                           rel="tooltip"
                           title=""
                           className="btn btn-danger btn-link btn-xs"
                           data-original-title="Remove"
                         >
                           <i className="fa fa-times" />
-                        </a>
+                        </button>
                       </td>
                     </tr>
                   );

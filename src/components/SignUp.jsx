@@ -1,8 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import registration from './signup.module.css';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const SignUp = () => {
+  const getallproject=async() => {
+    const res=await axios.get("http://localhost:4000/api4/project")
+    console.log(res.data.data);
+    setprojects(res.data.data);
+  }
+
+
+  const [projects, setprojects] = useState([])
   return (
 //     <div>
 //       <>

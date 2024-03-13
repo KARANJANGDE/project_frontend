@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import axios from 'axios';
 
 
 const SideBar = () => {
@@ -10,6 +11,26 @@ const SideBar = () => {
   const isAdmin = path.includes('admin');
   const dashboardLink = isAdmin ? "/admin/admindashboard" : "/user/userdashboard";
   const dashboardName = isAdmin ? "Admin Dashboard" : "User Dashboard";
+  const id=localStorage.getItem('id');
+
+  const [pro, setpro] = useState('')
+
+  const getuserdetailbyid=async()=>{
+    try {
+      const res=await axios.get(`http://localhost:4000/api/user/${id}`)
+      console.log(res.data.data.ProjectID._id)
+      setpro(res.data.data.ProjectID._id)
+      
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    
+  getuserdetailbyid()
+  }, [])
+  
 
     const adminlinks=[
         { 
@@ -41,7 +62,7 @@ const SideBar = () => {
           name:"Communication",
           link:"admin/communication",
           icon:"nc-icon nc-bulb-63"
-        }
+        },
         
     ]
     const userlinks=[
@@ -57,8 +78,13 @@ const SideBar = () => {
         },
         {
           name:'Equipment',
-          link:'/user/equipment/65d9b080eec8efe599d75ee3',
+          link:`/user/equipment/${pro}`,
           icon:'nc-icon nc-notes'
+        },
+        {
+          name:'Progress Status',
+          link:`/user/userprojectstatus/${pro}`,
+          icon:'nc-icon nc-atom'
         }
     ]
 

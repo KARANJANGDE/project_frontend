@@ -75,7 +75,7 @@ const AddEquipment = () => {
                   </h3>
                   <Link
             type="button"
-            to="/admin/admindashboard"
+            to="/admin/equipment"
             rel="tooltip"
             className="btn btn-danger btn-simple btn-link"
             data-original-title="Remove"

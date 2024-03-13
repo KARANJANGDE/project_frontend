@@ -28,6 +28,8 @@ import UserEquipment from './components/User/UserEquipment';
 import Practice from './components/User/Practice';
 import ProjectStatus from './components/Admin/ProjectStatus';
 import ViewUserProfile from './components/Admin/ViewUserProfile';
+import CreateUser from './components/Admin/CreateUser';
+import UserProjectStatus from './components/User/UserProjectStatus';
 
 function App() {
 
@@ -87,10 +89,13 @@ function App() {
                   <Routes>
                     
                     <Route path='/user/userdashboard' element={<UserDashBoard/>}></Route>
-                    <Route path='user/userviewproject' element={<UserViewProject/>}></Route>
-                    <Route path='user/userprofile' element={<UserProfile/>}></Route>
-                    <Route path='user/practice' element={<Practice/>}></Route>
-                    <Route path='user/equipment/:id' element={<UserEquipment/>}></Route>
+                    <Route path='/user/userviewproject' element={<UserViewProject/>}></Route>
+                    <Route path='/user/userprofile' element={<UserProfile/>}></Route>
+                    <Route path='/user/practice' element={<Practice/>}></Route>
+                    <Route path='/user/equipment/:id' element={<UserEquipment/>}></Route>
+                    <Route path="/user/userprojectstatus/:id" element={<UserProjectStatus/>}></Route>
+                    <Route path="/user/userprojectstatus/:id/:status" element={<UserProjectStatus/>}></Route>
+                    <Route path='/admin/createuser' element={<CreateUser/>}></Route>
                     <Route path="/admin/admindashboard" element={<AdminDashBoard/>}></Route>
                     <Route path="/admin/addproject" element={<AddProject/>}></Route>
                     <Route path="/admin/adminprofile" element={<AdminProfile/>}></Route>
@@ -106,6 +111,7 @@ function App() {
                     <Route path="/admin/updateuserprofile/:id" element={<UpdateUserProfile/>}></Route>
                     <Route path="/admin/communication" element={<Communication/>}></Route>
                     <Route path='/admin/projectstatus/:id' element={<ProjectStatus/>}></Route>
+                    <Route path="/admin/projectstatus/:id/:status" element={<ProjectStatus/>}></Route>
                     <Route path='/admin/viewuserprofile/:id' element={<ViewUserProfile/>}></Route>
                   </Routes>
                 </CSSTransition>

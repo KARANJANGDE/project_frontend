@@ -151,7 +151,7 @@ const Login = () => {
             Submit
           </button>
           <div style={{ textAlign: 'center', marginTop: '1rem' }}>
-            <Link to="/signup" style={{ textDecoration: 'none', color: 'black', fontWeight: 'bold' }}>Haven't Register yet</Link>
+            <Link to="/" style={{ textDecoration: 'none', color: 'black', fontWeight: 'bold' }}>Don't Know Us Yet</Link>
           </div>
         </form>
 

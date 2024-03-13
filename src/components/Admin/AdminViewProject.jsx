@@ -53,8 +53,8 @@ const AdminViewProject = () => {
                 alignItems: "right",
                 fontSize: "20px",
                 position: "relative",
-                left: "100%",
-                top: "53px",
+                left: "102%",
+                top: "54px",
               }}
             >
               <i className="fa fa-times" />
@@ -69,6 +69,8 @@ const AdminViewProject = () => {
               <th>ProjectName</th>
               <th>City</th>
               <th>State</th>
+              <th>Latitude</th>
+              <th>Longitude</th>
               <th>Action</th>
               <th>Status</th>
               <th>Deletion</th>
@@ -79,12 +81,17 @@ const AdminViewProject = () => {
           <tbody>
               {
                 project?.map((pro,index)=>{
+                  const formattedStartDate = pro.StartDate.split('T')[0];
+                  const formattedEndDate = pro.EndDate.split('T')[0];
+      
                     return(
                         <tr>
                             <td>{index +1}</td>
                             <td>{pro.ProjectName}</td>
                             <td>{pro.City}</td>
                             <td>{pro.State}</td>
+                            <td>{pro.Latitude}</td>
+                            <td>{pro.Longitude}</td>
                             <td> <Link
                       to={`/admin/updateproject/${pro._id}`}
                       className="btn btn-primary"
@@ -135,8 +142,10 @@ const AdminViewProject = () => {
                     >
                       Delete
                     </button></td>
-                            <td>{pro.StartDate}</td>
-                            <td>{pro.EndDate}</td>
+                            {/* <td>{pro.StartDate}</td>
+                            <td>{pro.EndDate}</td> */}
+                            <td>{formattedStartDate}</td>
+                    <td>{formattedEndDate}</td>
                         </tr>
                     )
                 })

@@ -11,42 +11,32 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 
 const UserViewProject = () => {
 
-  const id =useParams().id;
+
+  const proid=localStorage.getItem('id');
+
 
     const navigate=useNavigate();
     const [types, settypes] = useState([]);
-    //const projectid=useParams().id;
-  
-    const getAllProjectbyID = async () => {
-      try {
-        const res = await axios.get("http://localhost:4000/api4/project/65d9b080eec8efe599d75ee3");
-        console.log(res.data.data);
-        settypes(res.data.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-  
     useEffect(() => {
-      getAllProjectbyID();
-    }, []);
-  
-    const { register, handleSubmit } = useForm();
-  
-    const submitHandler = async (data) => {
-        const objectToSubmit = Object.assign(data,{ProjectID :types._id})
-      try {
-        const res = await axios.post("http://localhost:4000/api6/equipment",objectToSubmit);
-        console.log(res.data.data);
-        navigate(`/admin/getequipment/${id}`);
-  
-      } catch (error) {
-        console.log(
-          "Failed to submit project:",
-          error.response ? error.response.data : error.message
-        );
+
+      const getuserbyid=async()=>{
+        try {
+          const res= await axios.get(`http://localhost:4000/api/user/${proid}`);
+          console.log(res.data.data);
+          console.log(res.data.data.ProjectID)
+          settypes(res.data.data.ProjectID);
+          
+        } catch (error) {
+          console.log(error);
+        }
       }
-    };
+      // getAllProjectbyID();
+
+      getuserbyid();
+    }, []);
+
+
+  
   return (
     <div className="col-md-12">
       <div className="card card-plain table-plain-bg">
@@ -57,7 +47,8 @@ const UserViewProject = () => {
         <div className="card-body table-full-width table-responsive">
           <div className="content">
             <div className="container-fluid">
-              <form onSubmit={handleSubmit(submitHandler)}>
+              {/* <form onSubmit={handleSubmit(submitHandler)}> */}
+              <form>
                 <div className="row">
                   <div
                     style={{

@@ -6,16 +6,29 @@ const UserEquipment = () => {
 
   //const id=localStorage.getItem('id')
 
-    //const id = useParams().id;
+    const id = useParams().id;
   const [equipment, setEquipment] = useState([]);
+  //const [userproid, setuserproid] = useState('');
+
+  // const getuserdetailbyid=async()=>{
+  //   try{
+  //     const res=await axios.get(`http://localhost:4000/api/user/${id}`)
+  //     console.log(res.data.data.ProjectID._id)
+  //     setuserproid(res.data.data.ProjectID._id)
+  //     //setEquipment(res.data)
+  //   }catch(err){
+  //     console.log(err)
+  //   }
+  // }
+  // getuserdetailbyid()
 
   useEffect(() => {
+
+    
     const getEquipmentByID = async () => {
       try {
-        const res = await axios.get(
-          "http://localhost:4000/api6/equipment/65d9b080eec8efe599d75ee3"
-        );
-        console.log(res.data.data);
+        const res = await axios.get(`http://localhost:4000/api6/equipment/`+id);
+        console.log("res/....",res.data.data);
         setEquipment(res.data.data);
       } catch (error) {
         console.error(error);
