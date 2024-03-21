@@ -53,7 +53,7 @@ const AdminViewProject = () => {
                 alignItems: "right",
                 fontSize: "20px",
                 position: "relative",
-                left: "102%",
+                left: "100%",
                 top: "54px",
               }}
             >
@@ -61,16 +61,15 @@ const AdminViewProject = () => {
             </Link>
         
       </div>
-      <div className="card-body table-full-width table-responsive">
+      <div className="card-body table-full-width table-responsive" style={{padding:"15px 47px 10px 0px"}}>
         <table className="table table-hover">
           <thead>
             <tr>
               <th>ID</th>
               <th>ProjectName</th>
-              <th>City</th>
-              <th>State</th>
               <th>Latitude</th>
               <th>Longitude</th>
+              <th>Details</th>
               <th>Action</th>
               <th>Status</th>
               <th>Deletion</th>
@@ -88,10 +87,26 @@ const AdminViewProject = () => {
                         <tr>
                             <td>{index +1}</td>
                             <td>{pro.ProjectName}</td>
-                            <td>{pro.City}</td>
-                            <td>{pro.State}</td>
                             <td>{pro.Latitude}</td>
                             <td>{pro.Longitude}</td>
+                            <td><Link
+                      to={`/admin/projectdetails/${pro._id}`}
+                      className="btn btn-primary"
+                      style={{
+                        height: "27px",
+                        width:"77px",
+                        lineHeight: "20px",
+                        padding: "0 8px",
+                        fontSize: "10px",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        color:"orange",
+                        borderColor:'orange'
+                      }}
+                    >
+                      Details
+                    </Link></td>
                             <td> <Link
                       to={`/admin/updateproject/${pro._id}`}
                       className="btn btn-primary"

@@ -21,7 +21,7 @@ const Home = () => {
         <span data-id={11}>Services</span>
       </Link>
       <Link style={{ display: 'flex', alignItems: 'center', gap: '8px', fontWeight: '900', color: 'black' }} data-id={12} to="/login">
-        <span data-id={13}>Contact Us</span>
+        <span data-id={13}>Login</span>
       </Link>
     </div>
     <div style={{ display: 'flex', alignItems: 'center', gap: '16px'}} data-id={14}>
@@ -208,7 +208,7 @@ const Home = () => {
         }}
         data-id={41}
       >
-        Contact Us
+        Services
       </h2>
       <p
         style={{
@@ -218,7 +218,7 @@ const Home = () => {
         }}
         data-id={42}
       >
-        Ready to take the next step? Contact us to speak with one of our...
+        Regular Reports, Ready Project Management, Easy Communication
       </p>
     </div>
   </div>
@@ -250,56 +250,14 @@ const Home = () => {
         fontSize: '0.875rem', /* text-sm */
         letterSpacing: '0.025em', /* tracking-wide */
         color: '#6B7280', /* text-gray-500 */
+        position:'relative',
+        left:'514px'
       }}
       data-id={45}
     >
-      © 2023 Better Housing. All rights reserved.
+      © 2024 Better Housing. All rights reserved.
     </div>
-    <div
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        gap: '1rem', /* space-x-4 */
-      }}
-      data-id={46}
-    >
-      <a
-        style={{
-          color: '#6B7280', /* text-gray-500 */
-          textDecoration: 'none', /* Removes underline from links */
-        }}
-        data-id={47}
-        href="#"
-        onMouseOver={(e) => (e.currentTarget.style.color = '#1F2937')} /* hover:text-gray-900 */
-        onMouseOut={(e) => (e.currentTarget.style.color = '#6B7280')}
-      >
-        Terms
-      </a>
-      <a
-        style={{
-          color: '#6B7280',
-          textDecoration: 'none',
-        }}
-        data-id={48}
-        href="#"
-        onMouseOver={(e) => (e.currentTarget.style.color = '#1F2937')}
-        onMouseOut={(e) => (e.currentTarget.style.color = '#6B7280')}
-      >
-        Privacy
-      </a>
-      <a
-        style={{
-          color: '#6B7280',
-          textDecoration: 'none',
-        }}
-        data-id={49}
-        href="#"
-        onMouseOver={(e) => (e.currentTarget.style.color = '#1F2937')}
-        onMouseOut={(e) => (e.currentTarget.style.color = '#6B7280')}
-      >
-        Policy
-      </a>
-    </div>
+    
   </div>
 </div>
 

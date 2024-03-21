@@ -11,14 +11,33 @@ const UserProjectStatus = () => {
   //const [visibleStatusIds, setVisibleStatusIds] = useState(new Set());
 
   const navigate = useNavigate();
-  const { register, handleSubmit, reset } = useForm();
+  //const { register, handleSubmit, reset } = useForm();
   const { id, status } = useParams();
 
   useEffect(() => {
+    // const getprojectbyid = async () => {
+    //   try {
+    //     const res = await axios.get(`http://localhost:4000/api4/project/${id}`);
+    //     setpro(res.data.data);
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+    // };
+
+    // getprojectbyid();
+
     const getprojectbyid = async () => {
       try {
         const res = await axios.get(`http://localhost:4000/api4/project/${id}`);
-        setpro(res.data.data);
+        if (res.data && res.data.data) {
+          // Assuming StartDate and EndDate are in ISO format and need to be formatted
+          const projectData = {
+            ...res.data.data,
+            StartDate: res.data.data.StartDate ? res.data.data.StartDate.split('T')[0] : 'N/A',
+            EndDate: res.data.data.EndDate ? res.data.data.EndDate.split('T')[0] : 'N/A',
+          };
+          setpro(projectData);
+        }
       } catch (error) {
         console.log(error);
       }
@@ -28,10 +47,6 @@ const UserProjectStatus = () => {
 
     const getallstatus = async () => {
       try {
-        // const res = await axios.get(`http://localhost:4000/api11/status/${id}`);
-        // console.log(res.data.data);
-        // setstatuses(res.data.data);
-        //reset(res.data.data);
         const url = status
           ? `http://localhost:4000/api11/status/project/${id}/${status}`
           : `http://localhost:4000/api11/status/${id}`; // Fallback to a default API if no status is selected
@@ -52,48 +67,6 @@ const UserProjectStatus = () => {
     // Optionally navigate if you want to change the URL, not strictly necessary if you're only filtering on the current page
     // navigate(`/admin/projectstatus/${id}/${status}`);
   };
-
-  // const submitHandler = async (data) => {
-  //     const object = {
-  //       name: data.name,
-  //       status: data.status,
-  //       Project: id,
-  //     };
-
-  //     try {
-  //       const res = await axios.post(
-  //         `http://localhost:4000/api11/status/`,
-  //         object
-  //       );
-  //       console.log(res.data.data);
-  //       reset(res.data.data);
-  //       navigate(`/admin/projectstatus/${id}`);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-
-  //   const updatestatus = async (statusId, newStatus) => {
-  //     try {
-  //       const res = await axios.put(
-  //         `http://localhost:4000/api11/status/${statusId}`,
-  //         { status: newStatus }
-  //       );
-  //       console.log(res.data.data);
-  //       navigate(`/admin/projectstatus/${id}`);
-  //       //setRenderKey(prevKey => prevKey + 1);
-  //       setstatuses((prevStatuses) =>
-  //         prevStatuses.map((statusItem) =>
-  //           statusItem.id === statusId
-  //             ? { ...statusItem, status: newStatus }
-  //             : statusItem
-  //         )
-  //       );
-  //       console.log("Status updated locally");
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
 
   const getStatusColor = (status) => {
     switch (status) {
@@ -172,7 +145,7 @@ const UserProjectStatus = () => {
                   </div>
 
                   <Link
-                    to="/user/userviewproject"
+                    to={`/user/userviewproject/${pro._id}`}
                     className="btn btn-round"
                     style={{
                       position: "relative",

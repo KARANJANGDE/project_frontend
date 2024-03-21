@@ -138,6 +138,23 @@ const ProjectStatus = () => {
                 <h3 className="card-title" style={{ fontSize: "30px" }}>
                   Project Status
                 </h3>
+                <Link
+                            type="button"
+                            to="/admin/adminviewproject"
+                            rel="tooltip"
+                            className="btn btn-danger btn-simple btn-link"
+                            data-original-title="Remove"
+                            style={{
+                              display: "flex",
+                              alignItems: "right",
+                              fontSize: "17px",
+                              position: "relative",
+                              left: "92%",
+                              top: "-40px",
+                            }}
+                          >
+                            <i className="fa fa-times" />
+                </Link>
               </div>
               <div className="card-body">
                 <form onSubmit={handleSubmit(submitHandler)}>

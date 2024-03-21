@@ -54,10 +54,14 @@ const Equipment = () => {
                       <th>City</th>
                       <th>State</th>
                       <th>Action</th>
+                      <th>StartDate</th>
+                      <th>EndDate</th>
                     </tr>
                   </thead>
                   <tbody>
                     {project?.map((pro,index) => {
+                             const formattedStartDate = pro.StartDate.split('T')[0];
+                             const formattedEndDate = pro.EndDate.split('T')[0];
                       return (
                         <tr>
                           <td>{index + 1}</td>
@@ -99,8 +103,8 @@ const Equipment = () => {
                     >
                       Delete
                     </button></td> */}
-                          <td>{pro.StartDate}</td>
-                          <td>{pro.EndDate}</td>
+                          <td>{formattedStartDate}</td>
+                          <td>{formattedEndDate}</td>
                         </tr>
                       );
                     })}

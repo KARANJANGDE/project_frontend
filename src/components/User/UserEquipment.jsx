@@ -8,19 +8,6 @@ const UserEquipment = () => {
 
     const id = useParams().id;
   const [equipment, setEquipment] = useState([]);
-  //const [userproid, setuserproid] = useState('');
-
-  // const getuserdetailbyid=async()=>{
-  //   try{
-  //     const res=await axios.get(`http://localhost:4000/api/user/${id}`)
-  //     console.log(res.data.data.ProjectID._id)
-  //     setuserproid(res.data.data.ProjectID._id)
-  //     //setEquipment(res.data)
-  //   }catch(err){
-  //     console.log(err)
-  //   }
-  // }
-  // getuserdetailbyid()
 
   useEffect(() => {
 
@@ -46,7 +33,7 @@ const UserEquipment = () => {
             <p className="card-category">Companies Equipment</p>
             <Link
               type="button"
-              to="/admin/equipment"
+              to="/user/userprojectequipmentlist"
               rel="tooltip"
               className="btn btn-danger btn-simple btn-link"
               data-original-title="Remove"

@@ -30,6 +30,10 @@ import ProjectStatus from './components/Admin/ProjectStatus';
 import ViewUserProfile from './components/Admin/ViewUserProfile';
 import CreateUser from './components/Admin/CreateUser';
 import UserProjectStatus from './components/User/UserProjectStatus';
+import UserProjectList from './components/User/UserProjectList';
+import UserProjectEquipmentList from './components/User/UserProjectEquipmentList';
+import UserProjectListStatus from './components/User/UserProjectListStatus';
+import ProjectDetails from './components/Admin/ProjectDetails';
 
 function App() {
 
@@ -89,10 +93,13 @@ function App() {
                   <Routes>
                     
                     <Route path='/user/userdashboard' element={<UserDashBoard/>}></Route>
-                    <Route path='/user/userviewproject' element={<UserViewProject/>}></Route>
+                    <Route path='/user/userprojectlist' element={<UserProjectList/>}></Route>
+                    <Route path='/user/userviewproject/:id' element={<UserViewProject/>}></Route>
                     <Route path='/user/userprofile' element={<UserProfile/>}></Route>
                     <Route path='/user/practice' element={<Practice/>}></Route>
+                    <Route path='/user/userprojectequipmentlist' element={<UserProjectEquipmentList/>}></Route>
                     <Route path='/user/equipment/:id' element={<UserEquipment/>}></Route>
+                    <Route path='/user/userprojectliststatus' element={<UserProjectListStatus/>}></Route>
                     <Route path="/user/userprojectstatus/:id" element={<UserProjectStatus/>}></Route>
                     <Route path="/user/userprojectstatus/:id/:status" element={<UserProjectStatus/>}></Route>
                     <Route path='/admin/createuser' element={<CreateUser/>}></Route>
@@ -104,6 +111,7 @@ function App() {
                     <Route path="/admin/viewdocument" element={<ViewDocument/>}></Route>
                     <Route path='/admin/adddocument' element={<AddDocument/>}></Route>
                     <Route path='/admin/adminviewproject' element={<AdminViewProject/>}></Route>
+                    <Route path='/admin/projectdetails/:id' element={<ProjectDetails/>}></Route>
                     <Route path='/admin/updateproject/:id' element={<UpdateProject/>}></Route>
                     <Route path='/admin/getequipment/:id'element={<GetEquipment/>}></Route>
                     <Route path="/admin/getequipment/updateequipment/:id" element={<UpdateEquipment/>}></Route>

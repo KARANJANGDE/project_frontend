@@ -20,17 +20,6 @@ const Communication = () => {
 
       getallcom();
     }, [])
-
-    const deletecommunication=async(id)=>{
-        try {
-            const res=await axios.delete(`http://localhost:4000/api9/com/${id}`);
-            console.log(res.data.data);
-            setcom(res.data.data);
-            
-        } catch (error) {
-            console.log(error);
-        }
-    }
     
   return (
     <div className="col-md-12">
@@ -57,7 +46,7 @@ const Communication = () => {
             </Link>
         
       </div>
-      <div className="card-body table-full-width table-responsive" style={{padding:"15px 54px 10px 15px"}}>
+      <div className="card-body table-full-width table-responsive" style={{padding:"15px 0px 10px 0px"}}>
         <table className="table table-hover">
           <thead>
             <tr>
@@ -71,12 +60,15 @@ const Communication = () => {
           <tbody>
               {
                 com?.map((comu,index)=>{
+                  const formatedDate=comu.ComDate.split('T')[0];
+                  const firstName = comu.UserID ? comu.UserID.FirstName : "Unknown";
+                  const lastName = comu.UserID ? comu.UserID.LastName : "User";
                     return(
                        <tr>
                         <td>{index+1}</td>
-                        <td>{comu.UserID.FirstName} {comu.UserID.LastName}</td>
+                        <td>{firstName} {lastName}</td>
                         <td>{comu.Inquiry}</td>
-                        <td>{comu.ComDate}</td>
+                        <td>{formatedDate}</td>
                         <td>{comu.Status==true?"false":"true"}</td>
                         {/* <td>
                         {<button

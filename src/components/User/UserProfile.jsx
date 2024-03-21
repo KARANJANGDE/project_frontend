@@ -69,7 +69,7 @@ const UserProfile = () => {
             <label>
               <img
                 className="avatar border-gray"
-                src="../../assets/img/faces/profile3.jpg"
+                src="../../assets/img/faces/face-0.jpg"
                 alt="..."
               />
               <h5 className="card-title">

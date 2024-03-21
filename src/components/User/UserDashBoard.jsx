@@ -2,7 +2,7 @@ import axios from "axios";
 import { Chart } from "chart.js";
 import React, { useEffect, useRef, useState } from "react";
 import { set, useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const UserDashBoard = () => {
   //Used For Chart
@@ -10,6 +10,7 @@ const UserDashBoard = () => {
   const chartInstanceRef = useRef(null);
   const {register,handleSubmit}=useForm();
   const [userId, setUserId] = useState('');
+  const navigate=useNavigate();
 
   useEffect(() => {
     //Used for chart
@@ -81,6 +82,8 @@ const UserDashBoard = () => {
     try {
       const res=await axios.post("http://localhost:4000/api9/com",object)
       console.log(res.data.data);
+      navigate("/user/userdashboard")
+      
       
     } catch (error) {
       console.log(error);
@@ -215,7 +218,7 @@ const UserDashBoard = () => {
                   </div>
                   <div className="stats">
                     <Link
-                      to="/user/userviewproject"
+                      to="/user/userprojectlist"
                       className="btn btn-danger"
                       style={{
                         height: "20px",
@@ -274,7 +277,7 @@ const UserDashBoard = () => {
         </div>
 
         <div className="row">
-          <div className="col-md-6">
+          {/* <div className="col-md-6">
             <div className="card ">
               <div className="card-header ">
                 <h3 className="card-title">About Us</h3>
@@ -339,7 +342,62 @@ const UserDashBoard = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
+<div className="col-md-6">
+  <div className="card" style={{
+    background: 'linear-gradient(to bottom right, #ffffff, #f9f9f9)', 
+    boxShadow: '0 4px 6px rgba(0,0,0,0.1)', 
+    borderRadius: '5px', 
+    overflow: 'hidden', 
+    margin: '20px 0',
+    border: '1px solid #e0e0e0'}}>
+    <div className="card-header" style={{ 
+      background: 'linear-gradient(to right, #f7f7f7, #ffffff)', 
+      padding: '20px', 
+      borderBottom: '3px solid #ddd'}}>
+      <h3 className="card-title" style={{ 
+        margin: '0', 
+        color: '#333', 
+        fontSize: '24px', 
+        fontFamily: "'Helvetica Neue', sans-serif", 
+        display: 'flex', 
+        alignItems: 'center'}}>
+        <i className="fa fa-building" style={{ fontSize: '30px', marginRight: '17px', color: '#4a90e2' }}></i>
+        About Us
+      </h3>
+      <p className="card-category" style={{ 
+        color: '#666', 
+        fontSize: '16px', 
+        fontFamily: "'Open Sans', sans-serif", 
+        marginTop: '5px' }}>
+        Company Description
+      </p>
+    </div>
+    <div className="card-body" style={{ 
+      fontFamily: "'Roboto', sans-serif", 
+      color: '#444', 
+      lineHeight: '1.8', 
+      padding: '20px', 
+      fontSize: '16px'}}>
+      <p style={{ marginBottom: '20px' }}>
+        At Better Housing, we are pioneering the future of construction management through digital innovation. Our mobile application is tailored to revolutionize how construction projects are managed, tracked, and executed, bringing unparalleled efficiency and clarity to the entire process. Designed for professionals across the construction industry, including contractors, project managers, architects, and engineers, Better Housing serves as your digital assistant in the palm of your hand.
+      </p>
+      <blockquote style={{ 
+        fontStyle: 'italic', 
+        color: '#555', 
+        borderLeft: '5px solid #eee', 
+        paddingLeft: '15px', 
+        margin: '20px 0'}}>
+        "Innovation and efficiency are at the core of our mission. We're committed to transforming the construction industry for the better." - Better Housing CEO
+      </blockquote>
+      <p style={{ marginBottom: '0' }}>
+        It serves as a digital tool that helps the professionals, including contractors, project managers, architects, engineers. It will also help them maintain the documentation properly and store it.
+      </p>
+    </div>
+  </div>
+</div>
+
+
           <div className="col-md-6">
             <div className="card  card-tasks">
               <div className="card-header ">

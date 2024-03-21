@@ -1,155 +1,250 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 const UpdateProject = () => {
-  //const [project, setproject] = useState([]);
-
-  const id = useParams().id;
-  console.log(id);
+  // const { id } = useParams();
+  // const navigate = useNavigate();
+  // const { register, handleSubmit, reset } = useForm();
+  // const [types, settypes] = useState([]);
+  const { id } = useParams();
   const navigate = useNavigate();
+  const { register, handleSubmit, setValue, reset } = useForm();
+  const [types, setTypes] = useState([]);
+  const [selectedType, setSelectedType] = useState("");
+  const [selectedTypeName, setSelectedTypeName] = useState("");
 
-  const { register, handleSubmit, reset } = useForm();
 
   useEffect(() => {
-    const fetchdata = async () => {
+    const fetchTypesAndProject = async () => {
       try {
-        const res = await axios.get("http://localhost:4000/api4/project/" + id);
-        console.log(res.data.data);
-        //setproject(res.data.data);
-        reset(res.data.data);
+        // Fetch types
+        const typesRes = await axios.get("http://localhost:4000/api5/type");
+        const typesData = typesRes.data.data;
+        setTypes(typesData);
+
+        // Fetch project data
+        const projectRes = await axios.get(
+          `http://localhost:4000/api4/project/${id}`
+        );
+        const projectData = projectRes.data.data;
+
+        // Assuming projectData.type contains the type ID
+        const currentType = typesData.find(
+          (type) => type._id === projectData.type
+        );
+
+        // Set the selected type ID and name
+        setSelectedType(currentType ? currentType._id : "");
+        setSelectedTypeName(currentType ? currentType.TypeName : "");
+
+        // Reset form fields with project data, omitting the type to handle it separately
+        const { type, ...rest } = projectData;
+        reset(rest);
       } catch (error) {
         console.log(error);
       }
     };
 
-    fetchdata();
-  }, []);
+    fetchTypesAndProject();
+  }, [id, reset, setValue]);
 
   const submitHandler = async (data) => {
     try {
-      const res = await axios.put(
-        "http://localhost:4000/api4/project/" + id,
-        data
-      );
-      console.log(res.data.data);
+      await axios.put(`http://localhost:4000/api4/project/${id}`, data);
       navigate("/admin/adminviewproject");
-      //setproject(res.data.data);
     } catch (error) {
       console.log(error);
     }
   };
+  const handleTypeChange = (e) => {
+    const selectedValue = e.target.value;
 
-  //   const getProjectbyID = async () => {
-  //     try {
+    // Update the form value for type
+    setValue("type", selectedValue);
 
-  //       setproject(res.data.data);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
+    // Find the selected type object based on ID
+    const selectedTypeObj = types.find((type) => type._id === selectedValue);
 
-  //   useEffect(() => {
-  //     getProjectbyID();
-  //   }, []);
+    // Update state for selected type ID and name
+    setSelectedType(selectedTypeObj ? selectedTypeObj._id : "");
+    setSelectedTypeName(selectedTypeObj ? selectedTypeObj.TypeName : "");
+  };
 
   return (
-    <div>
-      <div className="col-md-12">
-        <div className="card card-plain table-plain-bg">
-          <div className="card-header ">
-            <h4 className="card-title">Project Management</h4>
-            <p className="card-category">Updation</p>
-            <Link
-              type="button"
-              to="/admin/adminviewproject"
-              rel="tooltip"
-              className="btn btn-danger btn-simple btn-link"
-              data-original-title="Remove"
-              style={{
-                display: "flex",
-                alignItems: "right",
-                fontSize: "20px",
-                position: "relative",
-                left: "100%",
-                top: "53px",
-              }}
-            >
-              <i className="fa fa-times" />
-            </Link>
-          </div>
-          <div className="card-body table-full-width table-responsive">
-            <form onSubmit={handleSubmit(submitHandler)}>
-              <table className="table table-hover">
-                <thead>
-                  <tr>
-                    <th>ProjectName</th>
-                    <th>City</th>
-                    <th>State</th>
-                    <th>Action</th>
-                    <th>StartDate</th>
-                    <th>EndDate</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      <input type="text" {...register("ProjectName")}></input>
-                    </td>
-                    <td>
-                      <input type="text" {...register("City")}></input>
-                    </td>
-                    <td>
-                      <input type="text" {...register("State")}></input>
-                    </td>
-                    <td>
-                      {" "}
-                      <button
-                        type="submit"
-                        className="btn btn-danger"
-                        style={{
-                          height: "27px",
-                          width: "77px",
-                          lineHeight: "20px",
-                          padding: "0 8px",
-                          fontSize: "10px",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                        }}
-                      >
-                        Update
-                      </button>
-                    </td>
-                    <td>
-                      <input type="text" {...register("StartDate")}></input>
-                    </td>
-                    <td>
-                      <input type="text" {...register("EndDate")}></input>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </form>
-            {/* <div className="stats">
-                    <Link
-                      to="/admin/addproject"
-                      className="btn btn-danger"
-                      style={{
-                        height: "40px",
-                        lineHeight: "20px",
-                        padding: "0 10px",
-                        fontSize: "15px",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                      }}
-                    >
-                      Add Project
-                    </Link>
-                  </div> */}
-          </div>
+    <div className="col-md-12">
+      <div className="card">
+        <div className="card-header" style={{ textAlign: "center" }}>
+          <h3
+            className="card-title"
+            style={{
+              fontFamily: "Arial, sans-serif",
+              fontWeight: "bold",
+              color: "#34568B",
+            }}
+          >
+            Update Project
+          </h3>
+          <Link
+            to="/admin/adminviewproject"
+            className="btn btn-danger btn-simple btn-link"
+            style={{
+              display: "flex",
+              alignItems: "right",
+              fontSize: "17px",
+              position: "relative",
+              left: "96%",
+              top: "-44px",
+            }}
+          >
+            <i className="fa fa-times" />
+          </Link>
+        </div>
+        <div className="card-body" style={{ padding: "20px" }}>
+          <form onSubmit={handleSubmit(submitHandler)}>
+            <div className="row">
+              <div className="col-md-6 pr-1">
+                <label>Project Name</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  {...register("ProjectName")}
+                />
+              </div>
+              <div className="col-md-6 pl-1">
+                <label>Project ID (Readonly)</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={id}
+                  readOnly
+                />
+              </div>
+            </div>
+
+            <div className="row">
+              <div className="col-md-4 pr-1">
+                <label>City</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  {...register("City")}
+                />
+              </div>
+              <div className="col-md-4 px-1">
+                <label>State</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  {...register("State")}
+                />
+              </div>
+              <div className="col-md-4 pl-1">
+                <label>Country</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  {...register("Country")}
+                />
+              </div>
+            </div>
+
+            <div className="row">
+              <div className="col-md-6 pr-1">
+                <label>Start Date</label>
+                <input
+                  type="date"
+                  className="form-control"
+                  {...register("StartDate")}
+                />
+              </div>
+              <div className="col-md-6 pl-1">
+                <label>End Date</label>
+                <input
+                  type="date"
+                  className="form-control"
+                  {...register("EndDate")}
+                />
+              </div>
+            </div>
+
+            <div className="row">
+              <div className="col-md-4 pr-1">
+                <label>Latitude</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  {...register("Latitude")}
+                />
+              </div>
+              <div className="col-md-4 px-1">
+                <label>Longitude</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  {...register("Longitude")}
+                />
+              </div>
+              <div className="col-md-4 pl-1">
+                <label>Project Type</label>
+                <select
+                  {...register("type")}
+                  className="form-control"
+                  value={selectedType}
+                  onChange={handleTypeChange}
+                >
+                  {types.map((type) => (
+                    <option key={type._id} value={type._id}>
+                      {type.TypeName}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-md-3">
+                <label>SqaureFeet</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  {...register("squareFeet")}
+                />
+              </div>
+              <div className="col-md-3 ">
+                <label>BHK</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  {...register("bhk")}
+                />
+              </div>
+              <div className="col-md-3">
+                <label>Garden</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  {...register("garden")}
+                />
+              </div>
+              <div className="col-md-3">
+                <label>Rera</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  {...register("rera")}
+                />
+              </div>
+            </div>
+
+            <div className="row" style={{ marginTop: "20px" }}>
+              <div className="col-md-12">
+                <button type="submit" className="btn btn-primary">
+                  Update Project
+                </button>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
     </div>

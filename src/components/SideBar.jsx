@@ -73,17 +73,17 @@ const SideBar = () => {
       },
         {
             name:'ViewProject',
-            link:'user/userviewproject',
+            link:'user/userprojectlist',
             icon:'nc-icon nc-chart-bar-32'
         },
         {
           name:'Equipment',
-          link:`/user/equipment/${pro}`,
+          link:`/user/userprojectequipmentlist`,
           icon:'nc-icon nc-notes'
         },
         {
           name:'Progress Status',
-          link:`/user/userprojectstatus/${pro}`,
+          link:`/user/userprojectliststatus`,
           icon:'nc-icon nc-atom'
         }
     ]

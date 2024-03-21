@@ -12,34 +12,32 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 
 const AddDocument = () => {
 
-  const id =useParams().id;
 
-    const navigate=useNavigate();
-    const [types, settypes] = useState([]);
-    // const [documents, setDocuments] = useState([]);
-    // const [showForm, setShowForm] = useState(false);
-    //const [selectedfile, setselectedfile] = useState()
-    //const projectid=useParams().id;
+  const navigate = useNavigate();
+  const [projects, setProjects] = useState([]);
+  //const [projectIds, setProjectIds] = useState([]);
+    
   
     
   
     useEffect(() => {
 
 
-      const getallproject=async()=>{
+      const fetchData = async () => {
         try {
-
-          const res=await axios.get("http://localhost:4000/api4/project");
-          console.log(res.data.data);
-          settypes(res.data.data);
-          
+          const projectResponse = await axios.get("http://localhost:4000/api4/project");
+          // const projectIds = projectResponse.data.data.map(project => project._id);
+          const projects = projectResponse.data.data.map(project => ({
+            id: project._id, // Assuming the ID field is named _id
+            name: project.ProjectName, // Assuming the name field is named ProjectName
+          }));
+          setProjects(projects);
+          //setProjectIds(projectIds);
         } catch (error) {
           console.log(error);
         }
-      }
-
-      getallproject();
-
+      };
+      fetchData();
 
 
     }, []);
@@ -47,46 +45,26 @@ const AddDocument = () => {
 
   
     const { register, handleSubmit } = useForm();
-    // const onFileChange = (event) => {
-    //   setselectedfile(event.target.files[0]); // Update the state when a file is selected
-    // };
+
   
-    const submitHandler = async (data,event) => {
-      //  try {
-      //   const res=await axios.post("http://localhost:4000/api8/document",data);
-      //   console.log(res.data.data);
-      //   navigate("/admin/viewdocument");
-        
-      //  } catch (error) {
-      //   console.log(error);
-      //  }
-      event.preventDefault(); // Prevent the default form submission
-
-    const formData = new FormData();
-    // Append file to formData. Ensure "file" matches the expected field name in your backend.
-    const fileInput = event.target.FilePath; // Adjust this if your file input name differs
-    if (fileInput && fileInput.files[0]) {
-        formData.append("file", fileInput.files[0]);
-    }
-
-    // Append other data to formData as needed. Ensure field names match your backend expectations.
-    formData.append("DocumentName", data.DocumentName);
-    formData.append("DocumentType", data.DocumentType); // Adjust based on actual field names
-    formData.append("ProjectID", data.ProjectID);
-    formData.append("status", data.status); // Make sure boolean values are handled correctly on the backend
-
-    
-    try {
-      await axios.post("http://localhost:4000/api8/document", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-      navigate("/admin/viewdocument");
-    } catch (error) {
-      console.log(error);
-    }
+    const submitHandler = async (data) => {
+     
+      try {
+        const formData = new FormData();
+        formData.append('DocumentName', data.DocumentName);
+        formData.append('DocumentType', data.DocumentType);
+        formData.append('document', data.FilePath[0]);
+        formData.append('ProjectID', data.ProjectID);
+        formData.append('status', data.status);
+  
+        const response = await axios.post("http://localhost:4000/api8/document", formData);
+        console.log("response..................", response);
+        navigate("/admin/viewdocument");
+      } catch (error) {
+        console.error("Error adding document:", error);
       }
+    
+  }
   return (
     <div className="content">
     <div className="container-fluid">
@@ -145,22 +123,23 @@ const AddDocument = () => {
                       <label>DocumentType</label>
                       <input
                           type="text"
-                          {...register("DocumentName")}
+                          {...register("DocumentType")}
                           className="form-control"
                           placeholder="Enter Document Type"
+                          defaultValue="PDF"
                         />
                     </div>
                   </div>
                   <div className="row">
                     <div className="col-md-12">
                       <div className="form-group">
-                        <label>FilePath</label>
+                        <label>FileUpload</label>
                         <input
                           type="file"
-                          {...register("document")}
+                          {...register("FilePath")}
                           //onChange={onFileChange}
                           className="form-control"
-                          placeholder="Enter FIle"
+                          placeholder="Select PDF FIle"
                         />
                       </div>
                     </div>
@@ -169,17 +148,12 @@ const AddDocument = () => {
                     <div className="col-md-6 pr-1">
                       <div className="form-group">
                         <label>ProjectName</label>
-                        <select {...register("ProjectID")} className="form-control"
-                          placeholder="Project Status">
-                            {
-                              types?.map((pro)=>{
-                                return(
-                                  <option key={pro._id} value={pro._id}>
-                                    {pro.ProjectName}
-                                  </option>
-                                )
-                              })
-                            }
+                        <select {...register("ProjectID")} className="form-control">
+                        {projects.map(project => (
+                <option key={project.id} value={project.id}>
+                  {project.name}
+                </option>
+              ))}
                         </select>
                       </div>
                     </div>

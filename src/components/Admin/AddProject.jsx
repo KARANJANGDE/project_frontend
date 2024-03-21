@@ -209,6 +209,18 @@ const AddProject = () => {
                       </div>
                       <div className="col-md-6 pl-1">
                         <div className="form-group">
+                          <label>SquareFeet</label>
+                          
+                          <input
+                            type="text"
+                            {...register("sqaureFeet")}
+                            className="form-control"
+                            placeholder="Project Sqaure Feet"
+                          />
+                        </div>
+                      </div>
+                      {/* <div className="col-md-6 pl-1">
+                        <div className="form-group">
                           <label>Status</label>
                           <input
                             type="text"
@@ -217,7 +229,73 @@ const AddProject = () => {
                             placeholder="Project Status"
                           />
                         </div>
+                      </div> */}
+                      
+                    </div>
+                    <div className="row">
+                      <div className="col-md-4 pr-1">
+                        <div className="form-group">
+                          <label>BHK</label>
+                          <input
+                            type="text"
+                            {...register("bhk")}
+                            className="form-control"
+                            placeholder="Projects BHK"
+                            defaultValue=""
+                          />
+                        </div>
                       </div>
+                      <div className="col-md-4 px-1">
+                        <div className="form-group">
+                          <label>Floors</label>
+                          <input
+                            type="text"
+                            {...register("floors")}
+                            className="form-control"
+                            placeholder="Projects Floor"
+                          />
+                        </div>
+                      </div>
+                      <div className="col-md-4 pl-1">
+                        <div className="form-group">
+                          <label>Garden</label>
+                          <select
+                            {...register("garden")}
+                            className="form-control"
+                          >
+                            <option value="">Select Availabilty</option>
+                            <option value="true">Available</option>
+                            <option value="false">Not Available</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="row">
+                    <div className="col-md-6 pr-1">
+                        <div className="form-group">
+                          <label>RERA APPROVED</label>
+                          <select
+                            {...register("rera")}
+                            className="form-control"
+                          >
+                            <option value="">Select Approval</option>
+                            <option value="true">Approved</option>
+                            <option value="false">Not Approved</option>
+                          </select>
+                          
+                        </div>
+                      </div> 
+                       <div className="col-md-6 pl-1">
+                        <div className="form-group">
+                          <label>Status</label>
+                          <input
+                            type="text"
+                            {...register("status")}
+                            className="form-control"
+                            placeholder="Project Status"
+                          />
+                        </div>
+                      </div> 
                     </div>
                     <button
                       type="submit"
@@ -238,21 +316,21 @@ const AddProject = () => {
           <button
             href="#"
             className="btn btn-simple btn-link btn-icon"
-            style={{ fontSize: "25px", margin: "0 5px" }}
+            style={{ fontSize: "20px", margin: "0 5px" }}
           >
             <FontAwesomeIcon icon={faFacebookSquare} />
           </button>
           <button
             href="#"
             className="btn btn-simple btn-link btn-icon"
-            style={{ fontSize: "25px", margin: "0 5px" }}
+            style={{ fontSize: "20px", margin: "0 5px" }}
           >
             <FontAwesomeIcon icon={faTwitter} />
           </button>
           <button
             href="#"
             className="btn btn-simple btn-link btn-icon"
-            style={{ fontSize: "25px", margin: "0 5px" }}
+            style={{ fontSize: "20px", margin: "0 5px" }}
           >
             <FontAwesomeIcon icon={faGooglePlusSquare} />
           </button>

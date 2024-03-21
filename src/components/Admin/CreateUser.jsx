@@ -225,12 +225,21 @@ const CreateUser = () => {
                           ))}
                         </select> */}
                           {project.map((pro) => (
-                            <div key={pro._id}>
+                            <div key={pro._id} style={{
+                              display: 'flex',
+                              alignItems: 'center',
+                              padding: '5px',
+                              border: '1px solid #ddd', // Light gray border
+                              borderRadius: '5px',
+                              marginBottom: '10px',
+                              cursor: 'pointer',
+                            }}>
                               <input
                                 type="checkbox"
                                 value={pro._id}
                                 checked={selectedProjects.includes(pro._id)}
                                 onChange={handleProjectChange}
+                                style={{ marginRight: '10px' }}
                               />
                               {pro.ProjectName}
                             </div>
